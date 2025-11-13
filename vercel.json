@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "sceneradar",
+  "buildCommand": "npm run build",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
