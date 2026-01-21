@@ -25,23 +25,34 @@ export const MovieModal = () => {
       setMediaType(type || 'movie');
       setShowTrailer(!!trailer);
       setIsOpen(true);
-      // Prevent scrolling when modal is open
-      document.body.style.overflow = 'hidden';
     };
     
     document.addEventListener('openMovieModal', handleOpenModal as EventListener);
     
     return () => {
       document.removeEventListener('openMovieModal', handleOpenModal as EventListener);
+      // Ensure modal-open class is removed on unmount
+      document.body.classList.remove('modal-open');
     };
   }, []);
   
   const handleClose = () => {
     setIsOpen(false);
     setItemId(null);
-    // Restore scrolling
-    document.body.style.overflow = '';
   };
+
+  // Ensure body overflow is properly managed when modal state changes
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+    
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen]);
   
   // Handle clicks outside the modal
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {

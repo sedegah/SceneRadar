@@ -38,7 +38,7 @@ const MovieCard = ({ item, mediaType }: MovieCardProps) => {
     return '';
   };
 
-  const handleBookmarkToggle = (e: React.MouseEvent) => {
+  const handleBookmarkToggle = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
     
     if (bookmarked) {
@@ -53,7 +53,7 @@ const MovieCard = ({ item, mediaType }: MovieCardProps) => {
     }
   };
 
-  const handleOpenDetails = () => {
+  const handleOpenDetails = (e: React.MouseEvent | React.TouchEvent) => {
     // Prefetch details for faster loading
     queryClient.prefetchQuery({
       queryKey: [`/api/movies/${mediaType}/${item.id}`]
@@ -71,6 +71,8 @@ const MovieCard = ({ item, mediaType }: MovieCardProps) => {
       className="movie-card group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl bg-white dark:bg-gray-800 transition-all duration-300 
       hover:-translate-y-1 active:scale-98 cursor-pointer touch-manipulation card-hover"
       onClick={handleOpenDetails}
+      role="button"
+      tabIndex={0}
     >
       <div className="relative aspect-[2/3] overflow-hidden rounded-t-xl">
         {item.poster_path ? (

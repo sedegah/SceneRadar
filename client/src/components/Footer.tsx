@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import { Logo } from '@/components/Logo';
 
 const Footer = () => {
   return (
@@ -6,9 +7,9 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="material-icons text-primary text-3xl">radar</span>
-              <h2 className="text-2xl font-bold font-sans tracking-tight">
+            <div className="flex items-center space-x-2.5 mb-4">
+              <Logo size="sm" className="brightness-0 invert" />
+              <h2 className="text-2xl font-bold font-display tracking-tight">
                 Scene<span className="text-primary">Radar</span>
               </h2>
             </div>
