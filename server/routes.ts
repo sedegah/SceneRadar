@@ -3,11 +3,9 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Health check endpoint for deployment
   app.get('/api/health', (_req, res) => {
     res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
   });
-  // TMDB API proxy routes
   app.get('/api/movies/trending/:media_type', async (req, res) => {
     try {
       const { media_type } = req.params;
