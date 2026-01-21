@@ -4,7 +4,6 @@ import { Search } from '@/components/Search';
 import { Logo } from '@/components/Logo';
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isScrolled, setIsScrolled] = useState(false);
   
@@ -37,10 +36,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -48,34 +43,19 @@ const Header = () => {
   return (
     <header className={`sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : 'shadow-sm'}`}>
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between h-16 md:h-18">
-          <Link href="/" className="flex items-center group">
+        <div className="flex items-center justify-between gap-4 h-16 md:h-20">
+          <Link href="/" className="flex items-center group flex-shrink-0">
             <Logo className="transition-transform group-hover:scale-110 duration-300" />
           </Link>
-                    ? 'bg-primary text-white shadow-md'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                }`}
-              >
-                <span className="material-icons text-lg">{link.icon}</span>
-                <span>{link.label}</span>
-              </Link>
-            ))}
-          </nav>
 
-          {/* Right Section: Search and Controls */}
-          <div className="flex items-center space-x-2 md:space-x-3">
-            {/* Search */}
-            <div className="hidden sm:block">
-              <Search />
-          
-          <div className="flex items-center space-x-2 md:space-x-3">
-            <div className="hidden sm:block">
+          <div className="flex items-center gap-3 flex-1 justify-end max-w-2xl">
+            <div className="hidden md:flex flex-1">
               <Search />
             </div>
             
             <button 
               onClick={toggleTheme}
-              className="p-2 md:p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all shadow-sm hover:shadow-md active:scale-95 touch-manipulation"
+              className="flex-shrink-0 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all shadow-sm hover:shadow-md active:scale-95 touch-manipulation"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               <div className="relative w-5 h-5 flex items-center justify-center">
@@ -86,7 +66,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="sm:hidden pb-3">
+        <div className="md:hidden pb-4 pt-2">
           <Search />
         </div>
       </div>

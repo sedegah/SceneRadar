@@ -56,20 +56,19 @@ export const Search = () => {
   };
 
   return (
-    <div className="relative" ref={searchRef}>
+    <div className="relative w-full sm:w-auto" ref={searchRef}>
       <input
         type="text"
         placeholder="Search movies & shows..."
-        className="pl-9 pr-3 py-2 rounded-full text-sm bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary w-10 focus:w-32 sm:w-32 md:w-48 lg:w-64 transition-all"
+        className="w-full sm:w-64 md:w-72 lg:w-80 pl-10 pr-4 py-2.5 rounded-full text-sm bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary transition-all"
         value={query}
         onChange={handleInputChange}
         aria-label="Search movies and TV shows"
       />
-      <span className="material-icons absolute left-2.5 top-2 text-gray-400 text-sm sm:text-base">search</span>
+      <span className="material-icons absolute left-3 top-2.5 text-gray-400 text-base">search</span>
       
-      {/* Search Results Dropdown - adjusted for mobile */}
       {isDropdownOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 max-h-[80vh] sm:max-h-96 overflow-auto w-screen sm:w-auto max-w-[calc(100vw-2rem)] sm:max-w-sm md:max-w-md">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 max-h-[70vh] sm:max-h-96 overflow-auto sm:min-w-[400px]">
           <ul className="py-2">
             {results.map((result) => (
               <li 
